@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="277" height="60" viewBox="0 0 277 60">
+  <g id="Group_20" data-name="Group 20" transform="translate(-2995 -2902)">
+    <rect id="Rectangle_15" data-name="Rectangle 15" width="277" height="60" rx="10" transform="translate(2995 2902)" fill="#4267b2"/>
+    <text id="Share_on_Facebook" data-name="Share on Facebook" transform="translate(3058 2941)" fill="#fff" font-size="24" font-family="TensoW00-Regular"><tspan x="0" y="0">Share on Facebook</tspan></text>
+    <path id="facebook" d="M31.151,0H4.853A4.851,4.851,0,0,0,0,4.851v26.3A4.851,4.851,0,0,0,4.853,36h12.97l.022-12.864H14.5a.789.789,0,0,1-.789-.786L13.7,18.2a.789.789,0,0,1,.789-.792h3.336V13.4c0-4.65,2.84-7.182,6.988-7.182h3.4A.789.789,0,0,1,29,7.012v3.5a.789.789,0,0,1-.788.789H26.126c-2.256,0-2.693,1.072-2.693,2.645v3.469H28.39a.789.789,0,0,1,.783.881l-.492,4.147a.789.789,0,0,1-.783.7H23.456L23.434,36h7.717A4.851,4.851,0,0,0,36,31.149V4.851A4.851,4.851,0,0,0,31.151,0Z" transform="translate(3009.998 2914)" fill="#fff"/>
+  </g>
+</svg>
