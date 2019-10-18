@@ -1,0 +1,74 @@
+html
+  background-color: $white
+  font-size: $body-size
+  -webkit-font-smoothing: antialiased
+  -webkit-text-stroke-width: 0.2px
+  -moz-osx-font-smoothing: grayscale
+  min-width: 320px
+  overflow-x: hidden
+  overflow-y: scroll
+  text-rendering: $body-rendering
+  -ms-text-size-adjust: 100%
+  -webkit-text-size-adjust: 100%
+  // height: 100%
+  +desktop
+    background-color: $body-background
+  &::before,
+  &::after
+    content: ""
+    position: fixed
+    top: 0
+    left: 50%
+    border-radius: 50%
+  &::before
+    margin-left: -518px - 50
+    margin-top: 280px + 250
+    width: 18px
+    height: 18px
+    background-color: $white
+  &::after
+    margin-left: 250px
+    margin-top: 40px
+    width: 18px
+    height: 18px
+    background-color: $white
+    z-index: -1
+
+body
+  font-family: $body-family
+  color: $body-text
+  font-size: 62.5%
+  font-weight: $body-weight
+  line-height: $body-line-height
+  overflow-y: hidden
+  &::before,
+  &::after
+    content: ""
+    position: fixed
+    top: 0
+    left: 50%
+    border-radius: 50%
+  &::before
+    margin-left: -650px
+    margin-top: 280px
+    width: 38px
+    height: 38px
+    background-color: $white
+  &::after
+    margin-left: 485px
+    margin-top: 200px
+    width: 58px
+    height: 58px
+    background-color: rgba($white, 0.4)
+
+
+article,
+aside,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section
+  display: block

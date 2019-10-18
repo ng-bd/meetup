@@ -1,0 +1,86 @@
+.gallery
+  position: relative
+  overflow: hidden
+  margin-left: -12px
+  margin-right: -12px
+  +desktop
+    padding-top: 30px
+    margin-left: -93px
+    margin-right: -93px
+
+  $root: &
+
+  &__contain
+    position: relative
+    overflow-x: hidden
+
+  &__draggable
+    user-select: none
+    cursor: -webkit-grab
+    cursor: grab
+    overflow-x: scroll
+    padding-bottom: 30px
+    margin-bottom: -30px
+    &::-webkit-scrollbar
+      display: none
+  &__container
+    // border: 1px solid red
+    user-select: none
+    pointer-events: none
+    will-change: transform
+    padding-left: 12px
+    padding-right: 12px
+    +desktop
+      padding-left: 93px - 45
+      padding-right: 93px - 45
+  &__row
+    display: flex
+    flex-direction: row
+    flex-wrap: nowrap
+    align-items: stretch
+  &__col
+    min-height: 1px
+    width: 50%
+    min-width: 50%
+    img
+      border-radius: 30px
+      +desktop
+        border-radius: 40px
+    &--40
+      width: 40%
+      min-width: 40%
+    &--60
+      width: 60%
+      min-width: 60%
+    &--70
+      width: 70%
+      min-width: 70%
+    &--80
+      width: 80%
+      min-width: 80%
+    &--90
+      width: 90%
+      min-width: 90%
+    &--99
+      width: 99%
+      min-width: 99%
+        
+    &:not(:last-child)
+      margin-right: 12px
+      +desktop
+        margin-right: 30px
+    &:last-child
+      box-sizing: content-box
+      padding-right: 12px
+      +desktop
+        padding-right: 93px - 45
+
+  // .js-lovingScrollbarMeasure
+  //   width: 100px
+  //   height: 100px
+  //   overflow: scroll
+  //   position: absolute
+  //   background-color: transparent
+  //   top: 0
+  //   left: 0
+  //   z-index: -99

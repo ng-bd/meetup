@@ -1,0 +1,396 @@
+
+// Form: 
+
+// Name
+// Email (verification null)
+// Phone 
+// Profession
+// Facebook 
+// checkbox: Is show in attendee list?
+// selectbox: t-shirt size 
+
+//  app
+
+.Meetup
+  &__back
+    display: inline-flex
+    height: 56px
+    width: 56px
+    padding: 10px
+    margin-left: -12px
+    +desktop
+      margin-left: -56px
+
+.Meetup
+  position: relative
+  overflow: hidden
+  background: $white
+  max-width: 100%
+  padding-left: 12px
+  padding-right: 12px
+  z-index: 10
+  +desktop
+    width: 1000px
+    min-height: 650px
+    border-radius: 50px
+    padding: 0 93px
+    margin-left: auto
+    margin-right: auto
+    border: 7px solid $black
+    margin-top: 120px
+    margin-bottom: 120px
+  &::before
+    content: ""
+    position: fixed
+    top: 0
+    left: 50%
+    border-radius: 50%
+    margin-left: 500px + 60
+    margin-top: 280px + 300
+    width: 22px
+    height: 22px
+    background-color: $white
+  
+  &__header
+    position: relative
+    display: flex
+    flex-flow: row nowrap
+    align-items: center
+    justify-content: space-between
+    width: 100%
+    background-color: $white
+    z-index: 999
+    height: 102px
+    +desktop
+      height: 112px
+    &--ticket
+      justify-content: flex-start
+
+  &__logo
+    height: 65px
+    width: 177px
+    min-width: 177px
+    +desktop
+      height: 75px
+      width: 204px
+      min-width: 204px
+    img
+      width: auto
+      height: 100%
+
+
+  &__navigation
+    position: relative
+
+  &__navigationLink
+    height: 32px
+    font-size: 14px
+    font-size: 16px
+    padding-left: 16px
+    padding-right: 16px
+    border-radius: 6px
+    text-decoration: none
+    display: none
+    color: $text
+    +desktop
+      display: inline-flex
+      display: inline-flex
+      flex-direction: row
+      align-items: center
+    &:hover
+      color: $red
+    &--ticket
+      display: inline-flex
+      color: $red
+      background-color: rgba($red, 0.11)
+      +desktop
+        margin-right: 16px
+    &:last-child
+      margin-right: -16px
+
+
+  // Banner
+  &__main
+    position: relative
+    height: 540px
+    background-color: $red
+    border-radius: 40px
+    overflow: hidden
+    display: flex
+    flex-flow: row wrap
+    justify-content: center
+    align-content: center
+    padding-right: 30px
+    &::before 
+      content: ""
+      background-image: url("../images/banner@2x.jpg")
+      background-position: -100px center
+      background-attachment: 
+      background-repeat: no-repeat
+      background-size: cover
+      opacity: 0.09
+      top: 0
+      left: 0
+      bottom: 0
+      right: 0
+      position: absolute
+      z-index: 1
+      +desktop
+        background-position: center center
+    +desktop
+      position: relative
+      margin-left: -45px
+      margin-right: -45px
+      border-radius: 40px
+      padding-right: 90px
+      height: 460px
+  &__title
+    display: none
+    +desktop
+      width: 100%
+      text-align: right
+      display: block
+      font-size: 76px
+      line-height: 90px
+      margin-bottom: 70px
+      z-index: 2
+      color: $white
+      font-weight: 700
+    &--mobile
+      font-size: 68px
+      line-height: 1
+      font-weight: 700
+      color: $white
+      margin-bottom: 60px
+      z-index: 2
+      text-align: right
+      width: 100%
+      +desktop
+        display: none
+      
+  &__list
+    width: 100%
+    position: relative
+    z-index: 2
+  &__item
+    display: block
+    text-align: right
+  &__link
+    display: inline-flex
+    padding: 8px 0
+    border-bottom: 2px solid rgba($white, .47)
+    text-decoration: none
+    color: $white
+    font-size: 16px
+    line-height: 1
+    margin-bottom: 8px
+    +desktop
+      font-size: 20px
+      margin-bottom: 12px
+    
+
+  &__sectionTitle
+    font-size: 26px
+    line-height: 1.11
+    margin-top: 30px
+    font-weight: 700
+    padding-top: 20px
+    padding-bottom: 20px
+    +desktop
+      font-size: 36px
+      padding-top: 20px
+      padding-bottom: 20px
+      margin-top: 50px
+
+  // Speaker
+  &__speakers
+    position: relative
+    .Meetup__sectionTitle
+      padding-bottom: 0
+  .Speaker  
+    position: relative
+    margin-top: 40px
+    +desktop
+      display: flex
+      flex-direction: row
+      align-items: center
+    &__avatar
+      min-width: 80px
+      width: 80px
+      height: 80px
+      border-radius: 20px
+      float: left
+      margin-right: 12px
+      +desktop
+        margin-right: 0
+        float: none
+        min-width: 186px
+        width: 186px
+        height: 186px
+        background-color: rgba($text, 0.32)
+        border-radius: 40px
+      img
+        width: 100%
+    &__content
+      +desktop
+        padding-left: 30px
+
+    &__name
+      font-size: 18px
+      font-weight: 700
+      line-height: 1.11
+      padding-top: 20px
+      +desktop
+        padding-top: 0
+        font-size: 24px
+    &__role
+      font-size: 14px
+      line-height: 1
+      color: rgba($text, .67)
+      margin-top: 6px
+      +desktop
+        font-size: 18px
+        margin-top: 10px
+
+    &__bio
+      font-size: 16px
+      line-height: 1.8
+      margin-top: 30px
+      +desktop
+        font-size: 16px
+        margin-top: 16px
+
+
+  // venue
+  &__venue
+    position: relative
+    height: 460px
+    background-color: $text
+    border-radius: 40px
+    overflow: hidden
+    display: flex
+    flex-direction: column
+    justify-content: center
+    padding-left: 30px
+    margin-top: 50px
+    +desktop
+      margin-left: -45px
+      margin-right: -45px
+      height: 460px
+      background-color: $text
+      border-radius: 40px
+      overflow: hidden
+      display: flex
+      flex-direction: column
+      justify-content: center
+      padding-left: 150px
+      margin-top: 70px
+    &::before 
+      content: ""
+      background-image: url("../images/time@2x.jpg")
+      background-position: center center
+      background-attachment: 
+      background-repeat: no-repeat
+      background-size: cover
+      opacity: 0.09
+      top: 0
+      left: 0
+      bottom: 0
+      right: 0
+      position: absolute
+      z-index: 1
+  &__venueTitle
+    font-size: 36px
+    font-weight: 700
+    line-height: 1.4
+    color: $white
+    padding-top: 20px
+    z-index: 2
+  &__venueCopy
+    font-size: 18px
+    line-height: 1.7
+    color: $white
+    padding-bottom: 20px
+    z-index: 2
+    a
+      color: $white
+      &:hover
+        color: $red
+      
+
+  // Sponsor
+  &__sponsorsWrapper
+    display: flex
+    flex-flow: row wrap
+    margin-left: -6px
+    margin-right: -6px
+    margin-bottom: -12px
+    margin-top: 4px
+    +desktop
+      margin-left: -20px
+      margin-right: -20px
+      margin-bottom: -20px
+  &__sponsor
+    width: 50%
+    padding: 6px
+    +phablet
+      width: 33.33%
+    +tablet
+      width: 25%
+    +desktop
+      width: 210px
+      padding: 20px
+    
+    img
+      width: 100%
+
+  // share
+  &__share
+    margin-bottom: 10px
+    +desktop
+      margin-bottom: 66px
+  &__shareLink
+    display: inline-flex
+    height: 44px
+    margin-right: 10px
+    img
+      height: 100%
+      width: auto
+
+// Credit
+.Credit
+  display: block
+  color: rgba(44, 55, 120, .47)
+  position: relative
+  z-index: 1
+  font-size: 14px
+  margin-top: 50px
+  +desktop
+    margin-top: 30px
+  a
+    position: relative
+    color: inherit
+    font-size: inherit
+    text-decoration: none
+    &::before
+      content: ""
+      left: 0
+      right: 0
+      display: block
+      position: absolute
+      top: 100%
+      margin-top: -6px
+      height: 46%
+      background-color: rgba($red, .11)
+      opacity: .5
+      z-index: -1
+      border-radius: 2px
+    &:hover
+      color: rgba($red, .67)
+      &::before
+        background-color: rgba($red, .22)
+
+.Foo
+  margin-top: 30px
+  .Meetup__shareLink
+    margin-right: 30px
