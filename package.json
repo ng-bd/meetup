@@ -8,17 +8,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/zafree/zafree.github.io.git"
+    "url": "git+ssh://git@github.com:ng-bd/meetup.git"
   },
   "keywords": [
     "zafree"
   ],
-  "author": "Zafree",
+  "author": "Angular Bangladesh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zafree/zafree.github.io/issues"
+    "url": "https://github.com/ng-bd/meetup/issues"
   },
-  "homepage": "https://zafree.github.io",
+  "homepage": "https://ng-bd.github.io/",
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
