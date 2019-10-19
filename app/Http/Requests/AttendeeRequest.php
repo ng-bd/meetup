@@ -7,6 +7,18 @@ use Illuminate\Foundation\Http\FormRequest;
 class AttendeeRequest extends FormRequest
 {
     /**
+     * @var int
+     */
+    protected $attendeeId;
+
+    public function __construct()
+    {
+        if (!empty(\Route::current()->parameters['id'])) {
+            $this->attendeeId = intval(\Route::current()->parameters['id']);
+        }
+    }
+
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
@@ -23,7 +35,7 @@ class AttendeeRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => 'required',
             'email' => 'required|unique:attendees,email',
             'mobile' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|unique:attendees,mobile',
@@ -31,6 +43,16 @@ class AttendeeRequest extends FormRequest
             'profession' => 'required',
             'social_profile_url' => 'required'
         ];
+
+        if($this->attendeeId) {
+            unset($rules['misc.tshirt']);
+            foreach (['email', 'mobile'] as $item) {
+                $rules[$item] .= ','.$this->attendeeId;
+            }
+        }
+
+
+        return  $rules;
     }
 
     /**

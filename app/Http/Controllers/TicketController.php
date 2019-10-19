@@ -1,12 +1,10 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
-
-use App\Attendee;
 use App\Http\Requests\AttendeeRequest;
-use App\Payment;
+use App\Models\Attendee;
+use App\Models\Payment;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Shipu\Aamarpay\Facades\Aamarpay;
