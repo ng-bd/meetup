@@ -14,7 +14,6 @@ class Attendee extends Model
         'profession',
         'social_profile_url',
         'is_paid',
-        'is_show_in_list',
         'misc'
     ];
 

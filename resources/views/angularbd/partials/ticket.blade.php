@@ -22,27 +22,30 @@
                 </div>
             </div>
             <div class="col-sm-6 user_detail">
-                <div class="form-group">
+                <div class="form-group {{ $errors->has('profession') ? ' has-error' : '' }}">
                     <input class="form-control" name="profession" id="profession" type="text" placeholder="Enter your profession"
                            value="{{ old('profession') }}"
                     />
+                    <small class="text-danger">{{ $errors->first('profession') }}</small>
                 </div>
             </div>
             <div class="col-sm-6 user_detail">
-                <div class="form-group">
+                <div class="form-group {{ $errors->has('social_profile_url') ? ' has-error' : '' }}">
                     <input class="form-control" name="social_profile_url" id="social_profile_url" type="text" placeholder="Enter your social profile url"
                            value="{{ old('social_profile_url') }}"
                     />
+                    <small class="text-danger">{{ $errors->first('social_profile_url') }}</small>
                 </div>
             </div>
             <div class="col-sm-6 user_detail">
-                <div class="form-group">
+                <div class="form-group {{ $errors->has('misc.tshirt') ? ' has-error' : '' }}">
                     <select class="form-control" name="misc[tshirt]" id="tshirt" placeholder="T-shirt Size">
                         <option value="">Select Your T-shirt size</option>
                         @foreach(trans('t_shirt') as $key => $tShirt)
-                            <option value="{{ $tShirt }}"> {{ $tShirt }} </option>
+                            <option value="{{ $tShirt }}" @if(old('misc.tshirt') == $tShirt) selected @endif> {{ $tShirt }} </option>
                         @endforeach
                     </select>
+                    <small class="text-danger">{{ $errors->first('misc.tshirt') }}</small>
                 </div>
             </div>
         </div>
