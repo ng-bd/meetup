@@ -604,6 +604,13 @@ svg {
 .gallery__col--99 {
   width: 99%;
   min-width: 99%; }
+.gallery__col--twitter {
+  width: 82%;
+  min-width: 82%; }
+@media screen and (min-width: 960px) {
+  .gallery__col--twitter {
+    width: 40%;
+    min-width: 40%; } }
 .gallery__col:not(:last-child) {
   margin-right: 12px; }
 @media screen and (min-width: 960px) {
