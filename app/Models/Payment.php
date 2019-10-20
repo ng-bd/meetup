@@ -17,4 +17,9 @@ class Payment extends Model
     protected $casts = [
         'api_response' => 'array'
     ];
+
+    public function attendee()
+    {
+        return $this->belongsTo(Attendee::class);
+    }
 }
