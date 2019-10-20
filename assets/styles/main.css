@@ -1,7 +1,7 @@
 /**
  * Zafree v1.0.0 - Angular Bangladesh Meetup 2019
- * @link https://zafree.github.io
- * @copyright 2019-2019 Zafree
+ * @link https://ng-bd.github.io/
+ * @copyright 2019-2019 Angular Bangladesh
  * @license MIT
  */
 /* minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */
@@ -604,6 +604,13 @@ svg {
 .gallery__col--99 {
   width: 99%;
   min-width: 99%; }
+.gallery__col--twitter {
+  width: 82%;
+  min-width: 82%; }
+@media screen and (min-width: 960px) {
+  .gallery__col--twitter {
+    width: 40%;
+    min-width: 40%; } }
 .gallery__col:not(:last-child) {
   margin-right: 12px; }
 @media screen and (min-width: 960px) {

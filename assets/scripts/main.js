@@ -1,7 +1,7 @@
 /**
  * Zafree v1.0.0 - Angular Bangladesh Meetup 2019
- * @link https://zafree.github.io
- * @copyright 2019-2019 Zafree
+ * @link https://ng-bd.github.io/
+ * @copyright 2019-2019 Angular Bangladesh
  * @license MIT
  */
 "use strict";
