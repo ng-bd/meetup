@@ -21,7 +21,6 @@ Route::post('attendee/{uuid}/attend', 'TicketController@approveAttendance')->nam
 
 Route::get('ticket/payment/{attendee}', 'TicketController@ticketPayment')->name('ticket.payment');
 
-
 Route::post('payment/success', 'TicketController@paymentSuccessOrFailed')->name('payment.success');
 Route::post('payment/failed', 'TicketController@paymentSuccessOrFailed')->name('payment.failed');
 Route::post('payment/cancel', 'TicketController@paymentSuccessOrFailed')->name('payment.cancel');
