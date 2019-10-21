@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Jobs\SendEmailJob;
+use App\Jobs\SendSmsJob;
 use App\Mail\PaymentSuccess;
 use Illuminate\Database\Eloquent\Model;
 use Shipu\Watchable\Traits\WatchableTrait;
@@ -31,5 +32,6 @@ class Payment extends Model
     public function onModelCreated()
     {
         dispatch(new SendEmailJob($this->attendee, new PaymentSuccess($this->attendee)));
+        dispatch(new SendSmsJob($this->attendee, env('PAYMENT_SUCCESS_MESSAGE')));
     }
 }

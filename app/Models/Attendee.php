@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Jobs\SendEmailJob;
+use App\Jobs\SendSmsJob;
 use App\Mail\SuccessfullyCreateAttendee;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -59,5 +60,6 @@ class Attendee extends Model
     public function onModelCreated()
     {
         dispatch(new SendEmailJob($this, new SuccessfullyCreateAttendee($this)));
+        dispatch(new SendSmsJob($this, env('CONFIRM_MESSAGE')));
     }
 }

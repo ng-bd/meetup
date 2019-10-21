@@ -1119,7 +1119,7 @@
                                 style="text-decoration: none;transition: opacity 0.1s ease-in;color: #c3ced9;"
                                 href="{{ env('EVENT_FACEBOOK_LINK') }}"><img
                                     style="display: block;height: auto;width: 200px;border: 0;"
-                                    src="{{ public_path('angularbd/images/logo.png') }}" alt="{{ env('EVENT_TITLE') }}"
+                                    src="{{ asset('angularbd/images/logo.png') }}" alt="{{ env('EVENT_TITLE') }}"
                                     width="65"></a></div>
                     </div>
                     <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
@@ -1146,7 +1146,7 @@
                                            href="{{ env('EVENT_FACEBOOK_LINK') }}"><img
                                                 style="border: 0;display: block;height: auto;width: 100%;max-width: 900px;"
                                                 alt="" width="560"
-                                                src="{{ public_path('angularbd/images/event-banner.png') }}"></a>
+                                                src="{{ asset('angularbd/images/event-banner.png') }}"></a>
                                     </div>
                                 @endif
                             </div>
