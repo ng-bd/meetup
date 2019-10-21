@@ -1,6 +1,7 @@
 <main class="Meetup__ticket">
     <form class="form-contact buy-ticket" action="{{ route('buy.ticket.post') }}" method="post" id="buyTicket">
         @csrf
+        <input type="hidden" name="type" value="{{ \App\Enums\AttendeeType::ATTENDEE }}">
         <div class="row">
             <div class="col-12">
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

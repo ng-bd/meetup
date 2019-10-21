@@ -7,6 +7,8 @@ use App\Models\Attendee;
 use App\Models\Payment;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Carbon;
 use Shipu\Aamarpay\Facades\Aamarpay;
 
 class TicketController extends Controller
@@ -125,5 +127,49 @@ class TicketController extends Controller
             'amount'         => data_get($request, 'amount', 0),
             'api_response'   => $request->all()
         ]);
+    }
+
+    public function verifyAttendee($uuid)
+    {
+        $attendee = Attendee::where('uuid', $uuid)->first(['uuid', 'name', 'email', 'mobile', 'is_paid', 'attend_at']);
+
+        if (!$attendee) return response()->json([
+            'status'=> Response::HTTP_NOT_FOUND
+        ], Response::HTTP_NOT_FOUND);
+
+        if ($attendee->attend_at) return response()->json([
+            'status'=> Response::HTTP_UNAUTHORIZED
+        ], Response::HTTP_UNAUTHORIZED);
+
+        return response()->json([
+            'status'    => Response::HTTP_OK,
+            'approve_url' => route('attendee.attend', ['uuid' => $uuid]),
+            'data' => $attendee->toArray()
+        ]);
+    }
+
+    public function approveAttendance($uuid)
+    {
+        $attendee = Attendee::where('uuid', $uuid)
+            ->where('is_paid', 1)
+            ->whereNull('attend_at')
+            ->first();
+
+        if ($attendee) {
+            $attendee->attend_at = Carbon::now();
+            $saved = $attendee->save();
+
+            if ($saved) {
+                return response()->json([
+                    'code' => Response::HTTP_OK,
+                    'message' => 'Successfully Approved!'
+                ]);
+            }
+        }
+
+        return response()->json([
+            'code' => Response::HTTP_BAD_REQUEST,
+            'message' => 'Invalid Request!'
+        ], Response::HTTP_BAD_REQUEST);
     }
 }

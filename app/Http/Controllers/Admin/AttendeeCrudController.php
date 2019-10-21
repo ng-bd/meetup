@@ -37,6 +37,12 @@ class AttendeeCrudController extends CrudController
                 'label' => '# ID'
             ],
             [
+                'name' => 'type',
+                'type' => 'radio',
+                'label' => 'Type',
+                'options' => trans('attendee_type')
+            ],
+            [
                 'name' => 'name',
                 'type' => 'text',
                 'label' => 'Name',
@@ -87,6 +93,16 @@ class AttendeeCrudController extends CrudController
                 'type' => 'text',
                 'label' => 'Social Profile Url'
             ],
+            [
+                'name' => 'uuid',
+                'type' => 'text',
+                'label' => 'UUID'
+            ],
+            [
+                'name' => 'attend_at',
+                'type' => 'datetime',
+                'label' => 'Attend At'
+            ],
         ]);
 
         $this->setupFilter();
@@ -104,6 +120,16 @@ class AttendeeCrudController extends CrudController
         function() {
              $this->crud->addClause('where', 'is_paid', '=', 1);
         });
+
+        $this->crud->addFilter([
+            'type' => 'select2',
+            'name' => 'type',
+            'label'=> 'Type'
+        ],
+        trans('attendee_type'),
+        function($value) {
+            $this->crud->addClause('where', 'is_paid', '=', $value);
+        });
     }
 
     protected function setupCreateOperation()
@@ -111,6 +137,12 @@ class AttendeeCrudController extends CrudController
         $this->crud->setValidation(AttendeeRequest::class);
 
         $this->crud->addFields([
+            [
+                'name' => 'type',
+                'type' => 'select2_from_array',
+                'label' => 'Type',
+                'options' => trans('attendee_type')
+            ],
             [
                 'name' => 'name',
                 'type' => 'text',
@@ -137,12 +169,11 @@ class AttendeeCrudController extends CrudController
                 'label' => 'Social Profile Url'
             ],
             [   // select2_from_array
-                'name' => 'tshirt',
+                'name' => 'misc[tshirt]',
                 'label' => "T-Shirt",
                 'type' => 'select2_from_array',
                 'options' => trans('t_shirt'),
                 'allows_null' => false,
-                'store_in' => 'misc'
                 // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
             ],
             [
@@ -156,6 +187,19 @@ class AttendeeCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+        $this->crud->addFields([
+            [
+                'name' => 'attend_at',
+                'type' => 'datetime_picker',
+                'label' => 'Attend At',
+                'date_picker_options' => [
+                    'todayBtn' => 'linked',
+                    'format' => 'dd-mm-yyyy',
+                    'language' => 'en',
+                    'timePicker' => true
+                ],
+            ]
+        ]);
     }
 
     protected function setupShowOperation()

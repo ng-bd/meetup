@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use App\Jobs\SendEmailJob;
+use App\Mail\PaymentSuccess;
 use Illuminate\Database\Eloquent\Model;
+use Shipu\Watchable\Traits\WatchableTrait;
 
 class Payment extends Model
 {
+    use WatchableTrait;
+
     protected $fillable = [
         'attendee_id',
         'card_type',
@@ -21,5 +26,10 @@ class Payment extends Model
     public function attendee()
     {
         return $this->belongsTo(Attendee::class);
+    }
+
+    public function onModelCreated()
+    {
+        dispatch(new SendEmailJob($this->attendee, new PaymentSuccess($this->attendee)));
     }
 }

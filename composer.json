@@ -13,6 +13,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
+        "mpdf/mpdf": "^8.0",
         "realrashid/sweet-alert": "^2.0",
         "shipu/php-aamarpay-payment": "dev-master",
         "shipu/watchable": "dev-master",

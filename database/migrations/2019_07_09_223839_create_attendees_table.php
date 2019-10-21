@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\AttendeeType;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -15,6 +16,8 @@ class CreateAttendeesTable extends Migration
     {
         Schema::create('attendees', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->uuid('uuid');
+            $table->tinyInteger('type')->default(AttendeeType::ATTENDEE);
             $table->string('name');
             $table->string('mobile');
             $table->string('email')->unique();
@@ -23,6 +26,7 @@ class CreateAttendeesTable extends Migration
             $table->boolean('is_paid')->nullable()->default(false);
             $table->tinyInteger('status')->default(1);
             $table->json('misc')->nullable();
+            $table->timestamp('attend_at')->nullable();
             $table->timestamps();
         });
     }

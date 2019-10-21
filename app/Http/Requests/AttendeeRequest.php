@@ -37,6 +37,7 @@ class AttendeeRequest extends FormRequest
     {
         $rules = [
             'name' => 'required',
+            'type' => 'required',
             'email' => 'required|unique:attendees,email',
             'mobile' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|unique:attendees,mobile',
             'misc.tshirt' => 'required',
