@@ -13,6 +13,8 @@
 
         @include('angularbd.partials.previous-meetup-gallery')
 
+        @include('angularbd.partials.twitter')
+
         @include('angularbd.partials.footer')
     </div>
 @endsection

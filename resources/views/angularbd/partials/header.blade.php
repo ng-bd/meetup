@@ -17,6 +17,6 @@
 <meta property="og:description"
       content="Discuss & share your issues, ideas, tips & tricks with other developers at Angular Bangladesh Meetup. Be a part of the community to grow all along."/>
 <meta property="og:image"
-      content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg"/>
+      content="{{ asset('angularbd/images/social-media-promo.jpg') }}"/>
 {{--<link rel="stylesheet" href="./assets/styles/main.css">--}}
 <link rel="stylesheet" href="{{ asset('angularbd/styles/main.css') }}">
