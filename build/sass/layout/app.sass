@@ -357,6 +357,21 @@
       height: 100%
       width: auto
 
+  // Twitter feed
+  &__TwitterFeedWrapper
+    border: 5px solid $text
+    // padding: 20px 0
+    border-radius: 20px
+    overflow: hidden
+  &__TwitterFeedContent
+    max-height: 450px
+    overflow-y: scroll
+    +desktop
+      max-height: 650px
+    .simplebar-scrollbar::before
+      opacity: 1
+      background-image: linear-gradient(-131deg, rgb(231, 176, 43) 0%, $red 100%)
+
 // Credit
 .Credit
   display: block

@@ -23,14 +23,15 @@ var banner = [
   '/**',
   ' * Zafree v<%= pkg.version %> - <%= pkg.description %>',
   ' * @link <%= pkg.homepage %>',
-  ' * @copyright 2019-<%= new Date().getFullYear() %> <%= pkg.author %>',
+  ' * @copyright 2019 <%= pkg.author %>',
   ' * @license <%= pkg.license %>',
   ' */',
   ''
 ].join('\n');
 
 var helpers = [ 
-  'build/js/smooth-scroll.polyfills.min.js',
+  'build/js/simplebar.js',
+  'build/js/smooth-scroll.polyfills.js',
   'build/js/impetus.js',
   'build/js/init.js'
 ];
@@ -78,11 +79,13 @@ export function scripts() {
       presets: ['@babel/env']
     }))
     .pipe(concat('main.js'))
+    // .pipe(header(banner, { pkg : pkg } )) 
+    // .pipe(gulp.dest(paths.scripts.dest))
+    // .pipe(mode.production(uglify()))
+    .pipe(uglify())
     .pipe(header(banner, { pkg : pkg } )) 
+    // .pipe(mode.production(gulp.dest(paths.scripts.destProd)))
     .pipe(gulp.dest(paths.scripts.dest))
-    .pipe(mode.production(uglify()))
-    .pipe(header(banner, { pkg : pkg } )) 
-    .pipe(mode.production(gulp.dest(paths.scripts.destProd)))
     .pipe(browserSync.stream()); 
 }
 
@@ -95,12 +98,13 @@ export function styles() {
       cascade: false 
     })) 
     .pipe(csscomb()) 
+    // .pipe(header(banner, { pkg : pkg } )) 
+    // .pipe(mode.development(sourcemaps.write('.'))) 
+    // .pipe(gulp.dest(paths.styles.dest)) 
+    .pipe(csso()) 
     .pipe(header(banner, { pkg : pkg } )) 
-    .pipe(mode.development(sourcemaps.write('.'))) 
-    .pipe(gulp.dest(paths.styles.dest)) 
-    .pipe(mode.production(csso())) 
-    .pipe(header(banner, { pkg : pkg } )) 
-    .pipe(mode.production(gulp.dest(paths.styles.destProd)))
+    // .pipe(mode.production(gulp.dest(paths.styles.destProd)))
+    .pipe(gulp.dest(paths.styles.dest))
     .pipe(browserSync.stream()); 
 } 
 
