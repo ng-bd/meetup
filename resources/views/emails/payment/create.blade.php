@@ -10,7 +10,8 @@
     </div>
 
     <div style="Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;">
-        A QR code share with you. This will show when you participate in the event.
+        Please print the attached ticket. This will show when you participate in the event or you can show below QR code.
+        @include('emails.payment.qr_code')
     </div>
 @endsection
 

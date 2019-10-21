@@ -1,20 +1,19 @@
-@extendS('emails.layout')
-
-@section('content')
-    <div style="Margin-left: 20px;Margin-right: 20px;">
-        <div style="mso-line-height-rule: exactly;mso-text-raise: 4px;">
-            <h1 style="Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight: normal;color: #14161e;font-size: 22px;line-height: 31px;font-family: Bitter,Georgia,serif;">
-                Hello, {{ $attendee->name }}</h1>
-            <p style="Margin-top: 20px;Margin-bottom: 20px;"></p>
-        </div>
-    </div>
-
-    <div style="Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;text-align: center">
-        Use this QR code to attend the meetup
-        Scan QR code
-    </div>
-@endsection
-
-@section('footer')
-    Please PRINT and bring this ticket to the event entrance !!!
-@stop
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div style="text-align: center">
+    <i>Hello, i am</i>
+    <h1 style="Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight: normal;color: #14161e;font-size: 22px;line-height: 31px;font-family: Bitter,Georgia,serif;">
+        {{ $attendee->name }}
+    </h1>
+    @include('emails.payment.qr_code')
+</div>
+</body>
+</html>

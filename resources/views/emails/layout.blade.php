@@ -1137,15 +1137,17 @@
                              style="text-align: left;color: #656873;font-size: 14px;line-height: 21px;font-family: Open Sans,sans-serif;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);">
 
                             <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;">
-                                <div
-                                    style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;Margin-bottom: 20px;"
-                                    align="center">
-                                    <a style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #f4645f;"
-                                       href="{{ env('EVENT_FACEBOOK_LINK') }}"><img
-                                            style="border: 0;display: block;height: auto;width: 100%;max-width: 900px;"
-                                            alt="" width="560"
-                                            src="{{ asset('angularbd/images/event-banner.png') }}"></a>
-                                </div>
+                                @if(!isset($disabledBanner))
+                                    <div
+                                        style="font-size: 12px;font-style: normal;font-weight: normal;line-height: 19px;Margin-bottom: 20px;"
+                                        align="center">
+                                        <a style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #f4645f;"
+                                           href="{{ env('EVENT_FACEBOOK_LINK') }}"><img
+                                                style="border: 0;display: block;height: auto;width: 100%;max-width: 900px;"
+                                                alt="" width="560"
+                                                src="{{ asset('angularbd/images/event-banner.png') }}"></a>
+                                    </div>
+                                @endif
                             </div>
 
                             @yield('content')
@@ -1192,10 +1194,6 @@
                     </div>
                     @php $start += 4; @endphp
                 @endforeach
-                <div style="line-height:20px;font-size:20px;">&nbsp;</div>
-
-
-                <div style="line-height:30px;font-size:30px;">&nbsp;</div>
 
                 <div role="contentinfo">
                     <div class="layout email-footer"
@@ -1208,28 +1206,30 @@
                             <div class="column wide"
                                  style="text-align: left;font-size: 12px;line-height: 19px;color: #939496;font-family: Open Sans,sans-serif;Float: left;max-width: 400px;min-width: 320px; width: 320px;width: calc(8000% - 47600px);">
                                 <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 10px;Margin-bottom: 10px;">
-                                    <table class="email-footer__links emb-web-links"
-                                           style="border-collapse: collapse;table-layout: fixed;" role="presentation">
-                                        <tbody>
-                                        <tr role="navigation">
-                                            <td class="emb-web-links" style="padding: 0;width: 26px;"><a
-                                                    style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #939496;"
-                                                    href="{{ env('GROUP_FACEBOOK_LINK') }}"><img
-                                                        style="border: 0;"
-                                                        src="https://i2.createsend1.com/static/eb/master/13-the-blueprint-3/images/facebook.png"
-                                                        width="26" height="26" alt="Facebook"></a></td>
-                                            <td class="emb-web-links" style="padding: 0 0 0 3px;width: 26px;"><a
-                                                    style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #939496;"
-                                                    href="{{ env('GROUP_TWITTER_LINK') }}"><img
-                                                        style="border: 0;"
-                                                        src="https://i3.createsend1.com/static/eb/master/13-the-blueprint-3/images/twitter.png"
-                                                        width="26" height="26" alt="Twitter"></a></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                    @if(!isset($disabledSocialLink))
+                                        <table class="email-footer__links emb-web-links"
+                                               style="border-collapse: collapse;table-layout: fixed;" role="presentation">
+                                            <tbody>
+                                            <tr role="navigation">
+                                                <td class="emb-web-links" style="padding: 0;width: 26px;"><a
+                                                        style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #939496;"
+                                                        href="{{ env('GROUP_FACEBOOK_LINK') }}"><img
+                                                            style="border: 0;"
+                                                            src="https://i2.createsend1.com/static/eb/master/13-the-blueprint-3/images/facebook.png"
+                                                            width="26" height="26" alt="Facebook"></a></td>
+                                                <td class="emb-web-links" style="padding: 0 0 0 3px;width: 26px;"><a
+                                                        style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #939496;"
+                                                        href="{{ env('GROUP_TWITTER_LINK') }}"><img
+                                                            style="border: 0;"
+                                                            src="https://i3.createsend1.com/static/eb/master/13-the-blueprint-3/images/twitter.png"
+                                                            width="26" height="26" alt="Twitter"></a></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    @endif
                                     <div style="font-size: 12px;line-height: 19px;Margin-top: 20px;">
                                         <div>{{ env('EVENT_TITLE') }}<br>
-                                            Date: {{ \Carbon\Carbon::parse(env('EVENT_DATE'))->format('d M Y h:m a') }}<br>
+                                            Date: {{ \Carbon\Carbon::parse(env('EVENT_DATE'))->format('d M Y h:i a') }}<br>
                                             Venue: {{ env('EVENT_VENUE') }}<br>
                                             Address: {{ env('EVENT_ADDRESS') }}<br>
                                             Google Map: <a target="_blank"

@@ -31,6 +31,11 @@ class PaymentSuccess extends Mailable
      */
     public function build()
     {
-        return $this->subject("Successfully Payment for ".env("EVENT_TITLE"))->view('emails.payment.create')->with([ 'attendee' => $this->attendee ]);
+        $attendee = $this->attendee;
+        $pdf = app('dompdf.wrapper');
+        $pdf->loadView('emails.payment.ticket', compact('attendee'));
+        return $this->subject("Successfully Payment for ".env("EVENT_TITLE"))
+                ->attachData($pdf->output(), 'Ticket.pdf')
+                ->view('emails.payment.create', compact('attendee'));
     }
 }
