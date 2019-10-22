@@ -1,4 +1,6 @@
 <main class="Meetup__ticket">
+    <h4 class="Meetup__sectionTitle">Get your ticket</h4>
+    <p class="Meetup__sectionCopy">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it.</p>
     <form class="Meetup__form" action="{{ route('buy.ticket.post') }}" method="post" id="buyTicket">
         @csrf
         <input type="hidden" name="type" value="{{ \App\Enums\AttendeeType::ATTENDEE }}">
@@ -9,7 +11,7 @@
           </div>
           @if($errors->has('name'))
             <p class="Field__validation">{{ $errors->first('name') }}</p>
-          &endif
+          @endif
         </div>
         <div class="Field {{ $errors->has('email') ? ' Field--error' : '' }}">
           <label class="Field__label">Email</label>
@@ -18,7 +20,7 @@
           </div>
           @if($errors->has('email'))
             <p class="Field__validation">{{ $errors->first('email') }}</p>
-          &endif
+          @endif
         </div>
         <div class="Field {{ $errors->has('mobile') ? ' Field--error' : '' }}">
           <label class="Field__label">Phone</label>
@@ -27,7 +29,7 @@
           </div>
           @if($errors->has('mobile'))
             <p class="Field__validation">{{ $errors->first('mobile') }}</p>
-          &endif
+          @endif
         </div>
         <div class="Field {{ $errors->has('profession') ? ' Field--error' : '' }}">
           <label class="Field__label">Profession</label>
@@ -36,7 +38,7 @@
           </div>
           @if($errors->has('profession'))
             <p class="Field__validation">{{ $errors->first('profession') }}</p>
-          &endif
+          @endif
         </div>
         <div class="Field {{ $errors->has('social_profile_url') ? ' Field--error' : '' }}">
           <label class="Field__label">Social profile link</label>
@@ -45,7 +47,21 @@
           </div>
           @if($errors->has('social_profile_url'))
             <p class="Field__validation">{{ $errors->first('social_profile_url') }}</p>
-          &endif
+          @endif
+        </div>
+        <div class="Field {{ $errors->has('misc.tshirt') ? ' Field--error' : '' }}">
+            <label class="Field__label">T-shirt size</label>
+            <div class="Field__control Field__control--select">
+                <select class="Field__input" name="misc[tshirt]" id="tshirt">
+                    <option value="" selected hidden>Select your t-shirt size</option>
+                    @foreach(trans('t_shirt') as $key => $tShirt)
+                        <option value="{{ $tShirt }}" @if(old('misc.tshirt') == $tShirt) selected @endif>{{ $tShirt }}</option>
+                    @endforeach
+                </select>
+            </div>
+            @if($errors->has('misc.tshirt'))
+                <p class="Field__validation">{{ $errors->first('misc.tshirt') }}</p>
+            @endif
         </div>
         <div class="Field {{ $errors->has('misc.working') ? ' Field--error' : '' }}">
           <label class="Field__label">How long you are working with Angular?</label>
@@ -62,21 +78,7 @@
           </div>
           @if($errors->has('misc.working'))
             <p class="Field__validation">{{ $errors->first('misc.working') }}</p>
-          &endif
-        </div>
-        <div class="Field {{ $errors->has('misc.tshirt') ? ' Field--error' : '' }}">
-          <label class="Field__label">T-shirt size</label>
-          <div class="Field__control Field__control--select">
-            <select class="Field__input" name="misc[tshirt]" id="tshirt">
-              <option value="" selected hidden>Select your t-shirt size</option>
-              @foreach(trans('t_shirt') as $key => $tShirt)
-                <option value="{{ $tShirt }}" @if(old('misc.tshirt') == $tShirt) selected @endif>{{ $tShirt }}</option>
-              @endforeach
-            </select>
-          </div>
-          @if($errors->has('misc.tshirt'))
-            <p class="Field__validation">{{ $errors->first('misc.tshirt') }}</p>
-          &endif
+          @endif
         </div>
         <div class="Field Field--block">
           <button type="submit" class="Button Button--submit">Submit</button>
