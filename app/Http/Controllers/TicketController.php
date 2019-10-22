@@ -143,7 +143,7 @@ class TicketController extends Controller
 
         return response()->json([
             'status'    => Response::HTTP_OK,
-            'approve_url' => route('attendee.attend', ['uuid' => $uuid]),
+            'approve_url' => route('attendee.attend', $uuid),
             'data' => $attendee->toArray()
         ]);
     }
@@ -171,5 +171,31 @@ class TicketController extends Controller
             'code' => Response::HTTP_BAD_REQUEST,
             'message' => 'Invalid Request!'
         ], Response::HTTP_BAD_REQUEST);
+    }
+
+    public function searchAttendee()
+    {
+        $search = request()->get('q', '');
+
+        $attendee = Attendee::where('is_paid', 1)
+            ->where(function($query) use($search) {
+                $query->where('email', $search)
+                    ->orWhere('mobile', $search);
+            })
+            ->first(['uuid', 'name', 'email', 'mobile', 'is_paid', 'attend_at']);
+
+        if (!$attendee) return response()->json([
+            'status'=> Response::HTTP_NOT_FOUND
+        ], Response::HTTP_NOT_FOUND);
+
+        if ($attendee->attend_at) return response()->json([
+            'status'=> Response::HTTP_UNAUTHORIZED
+        ], Response::HTTP_UNAUTHORIZED);
+
+        return response()->json([
+            'status'    => Response::HTTP_OK,
+            'approve_url' => route('attendee.attend', $attendee->uuid),
+            'data' => $attendee->toArray()
+        ]);
     }
 }
