@@ -1,4 +1,4 @@
-@extends('angularbd.layout')
+`@extends('angularbd.layout')
 
 @section('main-content')
     <div class="Meetup">
