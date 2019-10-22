@@ -68,12 +68,12 @@
           <div class="Field__control Field__control--select">
             <select class="Field__input" name="misc[working]" id="working">
               <option value="" selected hidden>Select here</option>
-              <option value="">Never Heard of it</option>
-              <option value="">1 Year</option>
-              <option value="">2 Years</option>
-              <option value="">3 Years</option>
-              <option value="">4 Years</option>
-              <option value="">4+ Years</option>
+              <option value="0">Never Heard of it</option>
+              <option value="1">1 Year</option>
+              <option value="2">2 Years</option>
+              <option value="3">3 Years</option>
+              <option value="4">4 Years</option>
+              <option value="4+">4+ Years</option>
             </select>
           </div>
           @if($errors->has('misc.working'))
@@ -83,7 +83,7 @@
         <div class="Field">
           <label class="Field__label">Additional note</label>
           <div class="Field__control Field__control--textarea">
-            <textarea placeholder="Leave any additional notes" rows="3" class="Field__input"></textarea>
+            <textarea placeholder="Leave any additional notes" rows="3" class="Field__input" name="misc[instruction]"></textarea>
           </div>
         </div>
         <div class="Field Field--block">
