@@ -78,7 +78,7 @@ class TicketController extends Controller
         }
 
         if ( $attendee->is_paid ) {
-            return $this->redirectToIndex("Already we are receive your payment, Thank you !!!");
+            return $this->redirectToIndex("We have received your payment already, Thank you.");
         }
 
         return view('angularbd.ticket-payment', compact('attendee'));
@@ -93,7 +93,7 @@ class TicketController extends Controller
         $attendee = Attendee::find(data_get($request, 'opt_a', null));
 
         if ( blank($attendee) ) {
-            return $this->redirectToIndex("Attendee Not Found !!", 'error');
+            return $this->redirectToIndex("Attendee is not available!", 'error');
         }
 
         $amount = env('EVENT_TICKET_PRICE');
@@ -117,7 +117,7 @@ class TicketController extends Controller
         $attendee->save();
 
         if ( Payment::where('transaction_id', data_get($request, 'pg_txnid', 'done'))->exists() ) {
-            return $this->redirectToIndex("Already we are receive your payment !!!");
+            return $this->redirectToIndex("We have received your payment already!");
         }
 
         return Payment::create([
@@ -162,7 +162,7 @@ class TicketController extends Controller
             if ($saved) {
                 return response()->json([
                     'code' => Response::HTTP_OK,
-                    'message' => 'Successfully Approved!'
+                    'message' => 'Approved successfully!'
                 ]);
             }
         }
