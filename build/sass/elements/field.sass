@@ -3,7 +3,8 @@ select::-ms-expand
 
 
 .Meetup
-  &__ticket
+  &__ticket,
+  &__payment
     padding-left: 8px
     padding-right: 8px
     .Meetup__sectionCopy
@@ -13,7 +14,8 @@ select::-ms-expand
       margin-bottom: 30px
       +desktop
         margin-bottom: 0
-  &__form
+  &__form,
+  &__suspect
     +desktop
       max-width: 400px
       margin-left: auto
@@ -23,6 +25,32 @@ select::-ms-expand
       padding-top: 60px 
       // margin-left: -20px
       // margin-right: -20px
+
+  &__suspectCopy
+    font-size: 16px
+    color: rgba($text, .67)
+    display: table
+    table-layout: fixed
+    height: 100%
+    width: 100%
+    border-spacing: 0
+    &:not(:first-child)
+      margin-top: 10px
+    span
+      display: table-cell
+      height: 100%
+      vertical-align: top
+      line-height: 1.44
+      &:nth-child(1)
+        font-size: 14px
+        color: rgba($text, .37)
+        width: 80px
+        padding-top: 2px
+        // border: 1px solid red
+      &:nth-child(2)
+        // border: 1px solid red
+        word-wrap: break-word
+        width: 100%
 
 .Field
   // +desktop
