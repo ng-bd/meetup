@@ -16,8 +16,8 @@ Route::view('/', 'angularbd.app')->name('angularbd.index');
 Route::get('get/ticket', 'TicketController@index')->name('buy.ticket');
 Route::post('get/ticket', 'TicketController@storeAttendee')->name('buy.ticket.post');
 
-Route::post('attendee/{uuid}/verify', 'TicketController@verifyAttendee')->name('attendee.verify');
-Route::post('attendee/{uuid}/attend', 'TicketController@approveAttendance')->name('attendee.attend');
+Route::get('attendee/{uuid}/verify', 'TicketController@verifyAttendee')->name('attendee.verify');
+Route::get('attendee/{uuid}/attend', 'TicketController@approveAttendance')->name('attendee.attend');
 
 Route::get('ticket/payment/{attendee}', 'TicketController@ticketPayment')->name('ticket.payment');
 
