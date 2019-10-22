@@ -80,6 +80,12 @@
             <p class="Field__validation">{{ $errors->first('misc.working') }}</p>
           @endif
         </div>
+        <div class="Field">
+          <label class="Field__label">Additional note</label>
+          <div class="Field__control Field__control--textarea">
+            <textarea placeholder="Leave any additional notes" rows="3" class="Field__input"></textarea>
+          </div>
+        </div>
         <div class="Field Field--block">
           <button type="submit" class="Button Button--submit">Submit</button>
         </div>
