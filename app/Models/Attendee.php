@@ -70,6 +70,6 @@ class Attendee extends Model
     public function onModelCreated()
     {
         dispatch(new SendEmailJob($this, new SuccessfullyCreateAttendee($this)));
-        dispatch(new SendSmsJob($this, env('CONFIRM_MESSAGE')));
+//        dispatch(new SendSmsJob($this, env('CONFIRM_MESSAGE')));
     }
 }

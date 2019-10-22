@@ -32,6 +32,6 @@ class Payment extends Model
     public function onModelCreated()
     {
         dispatch(new SendEmailJob($this->attendee, new PaymentSuccess($this->attendee)));
-        dispatch(new SendSmsJob($this->attendee, env('PAYMENT_SUCCESS_MESSAGE')));
+//        dispatch(new SendSmsJob($this->attendee, env('PAYMENT_SUCCESS_MESSAGE')));
     }
 }
