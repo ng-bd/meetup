@@ -52,6 +52,16 @@ class Attendee extends Model
         return array_get($this->misc, 'tshirt', 'N/A');
     }
 
+    public function getWorkingAttribute()
+    {
+        return array_get($this->misc, 'working', 'N/A');
+    }
+
+    public function getInstructionAttribute()
+    {
+        return array_get($this->misc, 'instruction', 'N/A');
+    }
+
     public function onModelCreating()
     {
         $this->uuid = DB::raw('UUID()');

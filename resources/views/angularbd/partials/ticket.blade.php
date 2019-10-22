@@ -49,6 +49,27 @@
                     <small class="text-danger">{{ $errors->first('misc.tshirt') }}</small>
                 </div>
             </div>
+            <div class="col-sm-6 user_detail">
+                <div class="form-group {{ $errors->has('misc.working') ? ' has-error' : '' }}">
+                    <select class="form-control" name="misc[working]" placeholder="Working with Angular?">
+                        <option value="0">Never Heard of it</option>
+                        <option value="1">1 Year</option>
+                        <option value="2">2 Year</option>
+                        <option value="3">3 Year</option>
+                        <option value="4">4 Year</option>
+                        <option value="4+">4+ Year</option>
+                    </select>
+                    <small class="text-danger">{{ $errors->first('misc.working') }}</small>
+                </div>
+            </div>
+            <div class="col-sm-6 user_detail">
+                <div class="form-group {{ $errors->has('misc.instruction') ? ' has-error' : '' }}">
+                    <textarea name="instruction">
+
+                    </textarea>
+                    <small class="text-danger">{{ $errors->first('misc.instruction') }}</small>
+                </div>
+            </div>
         </div>
         <div class="form-group mt-3 user_detail">
             <button type="submit" class="button button-contactForm">Submit</button>

@@ -72,6 +72,16 @@ class AttendeeCrudController extends CrudController
                 'label' => 'T-Shirt',
             ],
             [
+                'name' => 'working',
+                'type' => 'text',
+                'label' => 'Working',
+            ],
+            [
+                'name' => 'instruction',
+                'type' => 'text',
+                'label' => 'Instruction',
+            ],
+            [
                 'name' => 'is_paid',
                 'type' => 'radio',
                 'label' => 'Is Paid?',
