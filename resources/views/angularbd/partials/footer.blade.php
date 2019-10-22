@@ -15,5 +15,5 @@
         <a class="Meetup__shareLink" href="https://www.facebook.com/events/1896946520523062/" target="_blank"><img
                 src="{{ asset('angularbd/icons/link-event.svg') }}" alt=""></a>
     </div>
-    <div class="Credit">Crafted by <a href="https://www.facebook.com/zafree" target="_blank">Zafree</a> & Backend Support by <a href="https://www.facebook.com/to.shipu" target="_blank">Shipu</a></div>
+    <div class="Credit">Crafted by <a href="https://www.facebook.com/zafree" target="_blank">Zafree</a></div>
 </footer>
