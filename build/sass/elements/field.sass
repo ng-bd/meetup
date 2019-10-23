@@ -3,7 +3,8 @@ select::-ms-expand
 
 
 .Meetup
-  &__ticket
+  &__ticket,
+  &__payment
     padding-left: 8px
     padding-right: 8px
     .Meetup__sectionCopy
@@ -13,7 +14,8 @@ select::-ms-expand
       margin-bottom: 30px
       +desktop
         margin-bottom: 0
-  &__form
+  &__form,
+  &__suspect
     +desktop
       max-width: 400px
       margin-left: auto
@@ -23,6 +25,32 @@ select::-ms-expand
       padding-top: 60px 
       // margin-left: -20px
       // margin-right: -20px
+
+  &__suspectCopy
+    font-size: 16px
+    color: rgba($text, .67)
+    display: table
+    table-layout: fixed
+    height: 100%
+    width: 100%
+    border-spacing: 0
+    &:not(:first-child)
+      margin-top: 10px
+    span
+      display: table-cell
+      height: 100%
+      vertical-align: top
+      line-height: 1.44
+      &:nth-child(1)
+        font-size: 14px
+        color: rgba($text, .37)
+        width: 80px
+        padding-top: 2px
+        // border: 1px solid red
+      &:nth-child(2)
+        // border: 1px solid red
+        word-wrap: break-word
+        width: 100%
 
 .Field
   // +desktop
@@ -57,9 +85,9 @@ select::-ms-expand
     border-radius: 10px
     overflow: hidden
     &--select
-      // #{$root}__input
-      //   border-radius: 10px
-
+      #{$root}__input
+        cursor: pointer
+        appearance: none
       &::before
         content: ""
         position: absolute
@@ -89,6 +117,14 @@ select::-ms-expand
         margin-bottom: 1px
         margin-right: 1px
         border-radius: 10px
+    &--textarea
+      #{$root}__input
+        height: auto
+        min-height: 44px
+        outline: none
+        overflow: auto
+        white-space: nowrap
+        resize: none
 
   &__input
     font-family: $family-base
@@ -125,21 +161,9 @@ select::-ms-expand
       color: #bbbbbb
       font-family: $family-base
 
-    // &--textarea
-    //   height: auto
-    //   min-height: 36px
-    //   outline: none
-    //   overflow: auto
-    //   white-space: nowrap
-    //   resize: none
-    // &--select
-    //   cursor: pointer
-    //   appearance: none
-
   &--error
     #{$root}__control
-      border-color: $red
-          
+      border-color: $red     
 
   // &__help,
   &__validation
@@ -165,81 +189,3 @@ select::-ms-expand
       border: 1px solid rgba($red, 0.2)
       border-radius: 10px
       padding: 8px 15px
-
-// .radio
-//   &:not(:first-child)
-//     margin-top: -1px
-
-//   &__input[type=radio]
-//     position: absolute
-//     visibility: hidden
-
-//   &__label
-//     display: block
-//     position: relative
-//     cursor: pointer
-//     padding: 15px 15px 15px 40px
-
-
-// .option
-//     position: relative
-//     border: 1px solid #e5e5e5
-//     background-color: #fcfcfc
-
-//     &__check
-//         position: absolute
-//         top: 0
-//         left: 0
-//         margin-top: 16px
-//         margin-left: 15px
-//         width: 16px
-//         height: 16px
-//         border-radius: 4px
-//         border-width: 2px 
-//         border-style: solid
-//         background-color: $white
-//         border-color: $green
-//         transition: none $speed $easing $speed*0.5
-//         transition-property: border-color
-//         &::before,
-//         &::after
-//             content: ''
-//             position: absolute
-//             left: 0
-//             top: 0
-//             width: 15px
-//             height: 4px
-//             border-style: solid 
-//             border-top: 0
-//             border-right: 0
-//             transform-origin: center center
-//             transform: rotate(310deg)
-//             opacity: 0
-//             visibility: hidden
-//             transition: none $speed $easing $speed*0.25
-//             transition-property: opacity, visibility
-//         &::before
-//             border-width: 7px 
-//             border-color: $white
-//             margin-left: -2px + 1
-//             margin-top: -2px - 3
-//             border-radius: 3px
-//         &::after
-//             border-width: 3px 
-//             border-color: darken($green, 5%)
-//             margin-left: 1px
-//             margin-top: -3px
-//         &--active
-//             border-color: $btn-green
-//             &::before,
-//             &::after
-//                 opacity: 1
-//                 visibility: visible
-
-//     &__title
-
-//     &__body
-//         padding: 0 15px 15px 40px
-//     &__hint
-//         font-size: 13px
-//         line-height: 1.33
