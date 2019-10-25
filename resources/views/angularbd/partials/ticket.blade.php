@@ -1,6 +1,12 @@
 <main class="Meetup__ticket">
-    <h4 class="Meetup__sectionTitle">Get your ticket</h4>
-    <p class="Meetup__sectionCopy">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it.</p>
+    <h4 class="Meetup__sectionTitle">Register and get your ticket</h4>
+    <p class="Meetup__sectionCopy">Please make sure that your entering the <strong>correct email and mobile number</strong> as we are delivering the meetup ticket over email and SMS. After successfully completing the registration you are require to <strong>pay the registration fee 250tk</strong>.
+    <br/><br/>
+    At the event, in case you need support for physical disabilities, health issues, food alergies, or any information that we need to know, please use "Additional Note" for this purpose.
+    <br/><br/>
+    <strong>Angular question poped into your head?</strong> or Any specific topic that you you wanted to hear/discuss in the event? please feel free to leave "Additional Note".
+    </p>
+    <p class="Meetup__sectionCopy"></p>
     <form class="Meetup__form" action="{{ route('buy.ticket.post') }}" method="post" id="buyTicket">
         @csrf
         <input type="hidden" name="type" value="{{ \App\Enums\AttendeeType::ATTENDEE }}">
@@ -23,7 +29,7 @@
           @endif
         </div>
         <div class="Field {{ $errors->has('mobile') ? ' Field--error' : '' }}">
-          <label class="Field__label">Phone</label>
+          <label class="Field__label">Mobile</label>
           <div class="Field__control">
             <input class="Field__input" value="{{ old('mobile') }}" name="mobile" id="mobile" type="number" placeholder="Enter phone number">
           </div>
