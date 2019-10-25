@@ -72,6 +72,15 @@ class AttendeeCrudController extends CrudController
                 'label' => 'T-Shirt',
             ],
             [
+                'name' => 'is_paid',
+                'type' => 'radio',
+                'label' => 'Is Paid?',
+                'options' => [
+                    0 => 'No',
+                    1 => 'Yes'
+                ]
+            ],
+            [
                 'name' => 'working',
                 'type' => 'text',
                 'label' => 'Working',
@@ -80,15 +89,6 @@ class AttendeeCrudController extends CrudController
                 'name' => 'instruction',
                 'type' => 'text',
                 'label' => 'Instruction',
-            ],
-            [
-                'name' => 'is_paid',
-                'type' => 'radio',
-                'label' => 'Is Paid?',
-                'options' => [
-                    0 => 'No',
-                    1 => 'Yes'
-                ]
             ],
             [
                 'name' => 'profession',
