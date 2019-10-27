@@ -8,7 +8,7 @@
             <a class="Meetup__link" href="#speakers">Meet Our Speakers</a>
         </div>
         <div class="Meetup__item">
-            <a class="Meetup__link" href="#venu">Venue & Time</a>
+            <a class="Meetup__link" href="#venue">Venue & Time</a>
         </div>
         <div class="Meetup__item">
             <a class="Meetup__link" href="#sponsors">Our Proud Sponsors</a>
