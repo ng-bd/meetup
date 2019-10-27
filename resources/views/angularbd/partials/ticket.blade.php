@@ -1,6 +1,6 @@
 <main class="Meetup__ticket">
     <h4 class="Meetup__sectionTitle">Register and get your ticket</h4>
-    <p class="Meetup__sectionCopy">Please make sure that your entering the <strong>correct email and mobile number</strong> as we are delivering the meetup ticket over email and SMS. After successfully completing the registration you are require to <strong>pay the registration fee 250tk</strong>.
+    <p class="Meetup__sectionCopy">Please make sure that your entering the <strong>correct email and mobile number</strong> as we are delivering the meetup ticket over email and SMS. After the registration you are require to <strong>pay the registration fee 250tk to complete the process.</strong>.
     <br/><br/>
     At the event, in case you need support for physical disabilities, health issues, food alergies, or any information that we need to know, please use "Additional Note" for this purpose.
     <br/><br/>
@@ -75,7 +75,7 @@
             <select class="Field__input" name="misc[working]" id="working">
               <option value="" selected hidden>Select here</option>
               <option value="0">Never Heard of it</option>
-              <option value="1">1 Year</option>
+              <option value="1">0-1 Year</option>
               <option value="2">2 Years</option>
               <option value="3">3 Years</option>
               <option value="4">4 Years</option>
