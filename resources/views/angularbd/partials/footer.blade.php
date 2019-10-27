@@ -16,6 +16,8 @@
     <div class="Foo">
         <a class="Meetup__shareLink" href="https://www.facebook.com/groups/angular.bangladesh/" target="_blank"><img
                 src="{{ asset('angularbd/icons/link-group.svg') }}" alt=""></a>
+        <a class="Meetup__shareLink" href="https://www.facebook.com/events/470058623605925/" target="_blank"><img
+                src="{{ asset('angularbd/icons/link-event.svg') }}" alt=""></a>
     </div>
     <div class="Credit">Crafted by <a href="https://www.facebook.com/zafree" target="_blank">Zafree</a><br> Backend Support by <a href="https://www.facebook.com/to.shipu" target="_blank">Shipu</a></div>
 </footer>
