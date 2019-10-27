@@ -5,9 +5,8 @@
         <div class="Speaker__content">
             <h5 class="Speaker__name">Md. Mamunur Rashid</h5>
             <p class="Speaker__role">Tech Lead, Monstar Lab Bangladesh</p>
-            <p class="Speaker__bio">Mamunur Rashid leads Frontend development at Monstar Lab Bangladesh. He loves TypeScript and successfully lead large scale Angular applications to completion in shortest possible time. He is very approachable, and loves mentoring developers.
-
-            He is a passionate sports lover, and has various championships in Table Tennis competitions.
+            <p class="Speaker__bio">Mamunur Rashid leads Frontend development at Monstar Lab Bangladesh. He loves TypeScript and has successfully lead large scale Angular applications to completion in the shortest possible time. He is very approachable and loves mentoring developers.
+                He is a passionate sports lover and has numerous championships in Table Tennis competitions.
             </p>
         </div>
     </div>
@@ -25,9 +24,8 @@
         <div class="Speaker__content">
             <h5 class="Speaker__name">Saad Bin Amjad</h5>
             <p class="Speaker__role">Sr.Software Engineer, Monstar Lab Bangladesh</p>
-            <p class="Speaker__bio">Saad is a Full Stack Engineer at Monstar Lab Bangladesh and was one of the successful early adaptors of Angular. He has been a core part of multiple successful projects,  and is constantly exploring new web technologies and frameworks.
-
-            He prefers tea over coffee, and coffee over anything else. He loves to write tech blogs and contribute in open source over weekends.
+            <p class="Speaker__bio">Saad is a Full Stack Engineer at Monstar Lab Bangladesh and was one of the earliest adaptors of Angular. He has been a core part of multiple successful projects and is constantly exploring new web technologies and frameworks.
+                He prefers tea over coffee, and coffee over anything else. He loves to write tech blogs and contributes in open source during weekends.
             </p>
         </div>
     </div>
@@ -64,9 +62,9 @@
         <div class="Speaker__content">
             <h5 class="Speaker__name">S M Asad Rahman</h5>
             <p class="Speaker__role">CTO, Monstar Lab Bangladesh</p>
-            <p class="Speaker__bio">Asad is leading expert in various web technologies and is currently in charge of technical direction at Monstar Lab Bangladesh. Though he is passionate about JavaScript the most, he has lead successful large scale NodeJS, GOLang and PHP applications throughout his career.
-
-            At his free time, he explores new technologies and loves giving back to the community by mentoring and supporting developers through community meetups.</p>
+            <p class="Speaker__bio">Asad is a leading expert in various web technologies and is currently in charge of the technical direction at Monstar Lab Bangladesh. Though he is mostly passionate about JavaScript, but has lead large scale applications written in Node.js, Golang and PHP throughout his career.
+                In his free time, he explores new technologies and loves giving back to the community by mentoring and supporting developers through community meetups.
+            </p>
         </div>
     </div>
     <div class="Speaker">
