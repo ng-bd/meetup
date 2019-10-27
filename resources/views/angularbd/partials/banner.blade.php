@@ -8,7 +8,7 @@
             <a class="Meetup__link" href="#speakers">Meet Our Speakers</a>
         </div>
         <div class="Meetup__item">
-            <a class="Meetup__link" href="#venu">Venue & Time</a>
+            <a class="Meetup__link" href="#venue">Venue & Time</a>
         </div>
         <div class="Meetup__item">
             <a class="Meetup__link" href="#sponsors">Our Proud Sponsors</a>
@@ -16,5 +16,8 @@
         <div class="Meetup__item">
             <a class="Meetup__link" href="#gallery">Previous Meetup Gallery</a>
         </div>
+        <div class="Meetup__item">
+            <a href="https://twitter.com/angular_bd?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @angular_bd</a>
+        </div>               
     </div>
 </main>

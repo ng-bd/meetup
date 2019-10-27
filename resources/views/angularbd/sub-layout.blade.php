@@ -9,6 +9,6 @@
 
         @yield('content')
 
-        <div class="Credit">Crafted by <a href="https://www.facebook.com/zafree" target="_blank">Zafree</a><br>Backend Support by <a href="https://www.facebook.com/to.shipu" target="_blank">Shipu</a></div>
+        <div class="Credit Credit--ticket">Crafted by <a href="https://www.facebook.com/zafree" target="_blank">Zafree</a><br>Backend Support by <a href="https://www.facebook.com/to.shipu" target="_blank">Shipu</a></div>
     </div>
 @endsection

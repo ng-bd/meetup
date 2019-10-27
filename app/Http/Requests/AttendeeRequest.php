@@ -42,7 +42,7 @@ class AttendeeRequest extends FormRequest
             'mobile' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|unique:attendees,mobile',
             'misc.tshirt' => 'required',
             'profession' => 'required',
-            'social_profile_url' => 'required'
+            'social_profile_url' => 'required|url'
         ];
 
         if($this->attendeeId) {

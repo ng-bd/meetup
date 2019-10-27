@@ -1,9 +1,11 @@
 <?php
 
+use App\Enums\TShirtSize;
+
 return [
-    \App\Enums\TshirtSize::S => 'S',
-    \App\Enums\TshirtSize::M => 'M',
-    \App\Enums\TshirtSize::L => 'L',
-    \App\Enums\TshirtSize::XL => 'XL',
-    \App\Enums\TshirtSize::XXL => 'XXL'
+    TShirtSize::S => 'S',
+    TShirtSize::M => 'M',
+    TShirtSize::L => 'L',
+    TShirtSize::XL => 'XL',
+    TShirtSize::XXL => 'XXL'
 ];
