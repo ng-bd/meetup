@@ -9,7 +9,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
-use Shipu\Aamarpay\Facades\Aamarpay;
+use Illuminate\Support\Facades\Log;
+//use Shipu\Aamarpay\Facades\Aamarpay;
 
 class TicketController extends Controller
 {
@@ -26,9 +27,9 @@ class TicketController extends Controller
      *
      * @return RedirectResponse
      */
-    protected function redirectToIndex( $message = null, $toastType = 'info' )
+    protected function redirectToIndex($message = null, $toastType = 'info')
     {
-        if ( !blank($message) ) {
+        if (!blank($message)) {
             toast($message, $toastType);
         }
 
@@ -37,16 +38,16 @@ class TicketController extends Controller
 
     public function index()
     {
-        if ( $this->closeRegistration() ) {
+        if ($this->closeRegistration()) {
             return $this->redirectToIndex('Registration Closed', 'error');
         }
 
         return view('angularbd.buy-ticket');
     }
 
-    public function storeAttendee( AttendeeRequest $request )
+    public function storeAttendee(AttendeeRequest $request)
     {
-        if ( $this->closeRegistration() ) {
+        if ($this->closeRegistration()) {
             return $this->redirectToIndex('Registration Closed', 'error');
         }
 
@@ -54,14 +55,14 @@ class TicketController extends Controller
             'email' => $request->get('email'),
         ])->first();
 
-        if ( blank($attendee) ) {
+        if (blank($attendee)) {
             $attendee = Attendee::create($request->all());
         }
 
         //        dispatch(new SendEmailJob($attendee, new ConfirmTicket($ticket)));
         //        dispatch(new SendSmsJob($attendee, env('CONFIRM_MESSAGE')));
 
-        if ( !blank($attendee) ) {
+        if (!blank($attendee)) {
             toast(env('EVENT_SUCCESSFUL_REGISTRATION_MESSAGE'), 'success');
 
             return redirect()->route('ticket.payment', $attendee->id);
@@ -70,60 +71,73 @@ class TicketController extends Controller
         return $this->redirectToIndex("Something Went Wrong !!", 'error');
     }
 
-    public function ticketPayment( Attendee $attendee )
+    public function ticketPayment(Attendee $attendee)
     {
         $total = Attendee::where('is_paid', 1)->count();
-        if ( $total >= env('PUBLIC_TICKET') ) {
+        if ($total >= env('PUBLIC_TICKET')) {
             return $this->redirectToIndex("Sold Out !!!");
         }
 
-        if ( $attendee->is_paid ) {
+        if ($attendee->is_paid) {
             return $this->redirectToIndex("We have received your payment already, Thank you.");
         }
 
         return view('angularbd.ticket-payment', compact('attendee'));
     }
 
-    public function paymentSuccessOrFailed( Request $request )
+    public function paymentSuccessOrFailed(Request $request)
     {
-        if ( $request->get('pay_status') == 'Failed' ) {
+        Log::info($request->ip());
+        Log::info($request->getRequestUri());
+        Log::info($request->route()->getName());
+        Log::debug($request->all());
+
+        if ($request->get('pay_status') == 'Failed') {
+            Log::info("pay_status failure");
             return $this->redirectToIndex(env('PAYMENT_ERROR_MESSAGE'), 'error');
         }
 
-        $attendee = Attendee::find(data_get($request, 'opt_a', null));
+        $attendee = Attendee::find(data_get($request, 'attendee_id', null));
 
-        if ( blank($attendee) ) {
+        if (blank($attendee)) {
+            Log::info("Attendee is not available! id: " . data_get($request, 'attendee_id', null));
             return $this->redirectToIndex("Attendee is not available!", 'error');
         }
+        Log::info("Attendee is available, creating payments");
 
         $amount = env('EVENT_TICKET_PRICE');
-        $valid  = Aamarpay::validAmount($request, $amount);
 
-        if ( $valid ) {
-            $payment = $this->createPayment($attendee, $request);
-            if ( !blank($payment) ) {
-                //                dispatch(new SendEmailJob($attendee, new SucccessPayment($attendee)));
-                //                dispatch(new SendSmsJob($attendee, env('SUCCESS_MESSAGE')));
-                return $this->redirectToIndex(env('PAYMENT_SUCCESS_MESSAGE'), 'success');
-            }
+        $payment = $this->createPayment($attendee, $request);
+        if (!blank($payment)) {
+            //                dispatch(new SendEmailJob($attendee, new SucccessPayment($attendee)));
+            //                dispatch(new SendSmsJob($attendee, env('SUCCESS_MESSAGE')));
+            Log::info("Paid successfully!");
+            return $this->redirectToIndex(env('PAYMENT_SUCCESS_MESSAGE'), 'success');
+        } else {
+            Log::info("Payments failed!");
         }
+
 
         return $this->redirectToIndex(env('PAYMENT_ERROR_MESSAGE'), 'error');
     }
 
-    public function createPayment( $attendee, Request $request )
+    public function createPayment($attendee, Request $request)
     {
         $attendee->is_paid = true;
         $attendee->save();
 
-        if ( Payment::where('transaction_id', data_get($request, 'pg_txnid', 'done'))->exists() ) {
+        if (
+            Payment::where('attendee_id', data_get($request, 'attendee_id', null))->exists() ||
+            Payment::where('transaction_id', data_get($request, 'transaction_id', 'done'))->exists()
+        ) {
+            Log::info("Already paid! id: " . $attendee->id);
             return $this->redirectToIndex("We have received your payment already!");
         }
 
         return Payment::create([
             'attendee_id'    => $attendee->id,
             'card_type'      => data_get($request, 'card_type', null),
-            'transaction_id' => data_get($request, 'pg_txnid', 'ok'),
+            'transaction_id' => data_get($request, 'transaction_id', 'ok'),
             'amount'         => data_get($request, 'amount', 0),
             'api_response'   => $request->all()
         ]);
@@ -134,11 +148,11 @@ class TicketController extends Controller
         $attendee = Attendee::where('uuid', $uuid)->first(['uuid', 'name', 'email', 'mobile', 'is_paid', 'attend_at']);
 
         if (!$attendee) return response()->json([
-            'status'=> Response::HTTP_NOT_FOUND
+            'status' => Response::HTTP_NOT_FOUND
         ], Response::HTTP_NOT_FOUND);
 
         if ($attendee->attend_at) return response()->json([
-            'status'=> Response::HTTP_UNAUTHORIZED
+            'status' => Response::HTTP_UNAUTHORIZED
         ], Response::HTTP_UNAUTHORIZED);
 
         return response()->json([
@@ -178,18 +192,18 @@ class TicketController extends Controller
         $search = request()->get('q', '');
 
         $attendee = Attendee::where('is_paid', 1)
-            ->where(function($query) use($search) {
+            ->where(function ($query) use ($search) {
                 $query->where('email', $search)
                     ->orWhere('mobile', $search);
             })
             ->first(['uuid', 'name', 'email', 'mobile', 'is_paid', 'attend_at']);
 
         if (!$attendee) return response()->json([
-            'status'=> Response::HTTP_NOT_FOUND
+            'status' => Response::HTTP_NOT_FOUND
         ], Response::HTTP_NOT_FOUND);
 
         if ($attendee->attend_at) return response()->json([
-            'status'=> Response::HTTP_UNAUTHORIZED
+            'status' => Response::HTTP_UNAUTHORIZED
         ], Response::HTTP_UNAUTHORIZED);
 
         return response()->json([

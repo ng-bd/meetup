@@ -5,10 +5,10 @@
        "
        target="_blank"><img src="{{ asset('angularbd/icons/share-twitter.svg') }}" alt=""></a>
     <a class="Meetup__shareLink"
-       href="https://www.facebook.com/sharer/sharer.php?u=http://ng-bd.com" target="_blank"><img
+       href="https://www.facebook.com/sharer/sharer.php?u=https://ng-bd.com" target="_blank"><img
             src="{{ asset('angularbd/icons/share-facebook.svg') }}" alt=""></a>
     <a class="Meetup__shareLink"
-       href="http://www.linkedin.com/shareArticle?mini=true&title=Angular%20Bangladesh%20Meetup%202019%20&url=http://ng-bd.com"
+       href="http://www.linkedin.com/shareArticle?mini=true&title=Angular%20Bangladesh%20Meetup%202019%20&url=https://ng-bd.com"
        target="_blank"><img src="{{ asset('angularbd/icons/share-linkedin.svg') }}" alt=""></a>
 
     <h5 class="Meetup__sectionTitle">Join Us</h5>

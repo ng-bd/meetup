@@ -7,6 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class PaymentSuccess extends Mailable
 {
@@ -32,6 +33,7 @@ class PaymentSuccess extends Mailable
     public function build()
     {
         $attendee = $this->attendee;
+        Log::info("Sending ticket email for the attendee: " . $attendee->id);
         $pdf = app('dompdf.wrapper');
         $pdf->loadView('emails.payment.ticket', compact('attendee'));
         return $this->subject("Successfully paid for the ".env("EVENT_TITLE"))

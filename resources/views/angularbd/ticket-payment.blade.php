@@ -32,14 +32,7 @@
                     <span>Note</span>
                     <span>{{ data_get($attendee, 'instruction') }}</span>
                 </div>
-                {!!
-                    aamarpay_post_button([
-                        'cus_name'  => $attendee->name,
-                        'cus_email' => $attendee->email,
-                        'cus_phone' => $attendee->mobile,
-                        'opt_a' => $attendee->id,
-                    ], env('EVENT_TICKET_PRICE'), 'Pay '.env('EVENT_TICKET_PRICE').'tk', 'Button Button--submit')
-                !!}
+                <button type="submit" class="Button Button--submit" onclick="location.href='https://thesoftking.com/ng-meetup/?attendee_id={{ $attendee->id }}&uuid={{ $attendee->uuid }}&name={{ $attendee->name }}&email={{ $attendee->email }}&mobile={{ $attendee->mobile }}'">{{ 'Pay '.env('EVENT_TICKET_PRICE').'tk' }}</button>
             </div>
         </main>
     @endsection
