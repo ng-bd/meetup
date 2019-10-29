@@ -69,9 +69,9 @@ class Attendee extends Model
 
     public function onModelCreated()
     {
-        dispatch(new SendEmailJob($this, new SuccessfullyCreateAttendee($this)));
-        if(env('SMS_ENABLED')) {
-            dispatch(new SendSmsJob($this, env('CONFIRM_MESSAGE')));
-        }
+        // dispatch(new SendEmailJob($this, new SuccessfullyCreateAttendee($this)));
+        // if(env('SMS_ENABLED')) {
+        //     dispatch(new SendSmsJob($this, env('CONFIRM_MESSAGE')));
+        // }
     }
 }

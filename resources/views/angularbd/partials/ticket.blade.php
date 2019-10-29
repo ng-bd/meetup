@@ -1,4 +1,5 @@
 <main class="Meetup__ticket">
+    @if($attendeeType == \App\Enums\AttendeeType::ATTENDEE)
     <h4 class="Meetup__sectionTitle">Register and get your ticket</h4>
     <p class="Meetup__sectionCopy">Please make sure that your entering the <strong>correct email and mobile number</strong> as we are delivering the meetup ticket over email and SMS. After the registration you are require to <strong>pay the registration fee 250tk to complete the process.</strong>.
     <br/><br/>
@@ -6,10 +7,16 @@
     <br/><br/>
     <strong>Angular question poped into your head?</strong> or Any specific topic that you you wanted to hear/discuss in the event? please feel free to leave "Additional Note".
     </p>
+    @endif
+
+    @if($attendeeType == \App\Enums\AttendeeType::SPONSOR || $attendeeType == \App\Enums\AttendeeType::VOLUNTEER || $attendeeType == \App\Enums\AttendeeType::GUEST)
+    <h4 class="Meetup__sectionTitle">Delighted to have you here, please register yourself.</h4>
+    @endif
+
     <p class="Meetup__sectionCopy"></p>
     <form class="Meetup__form" action="{{ route('buy.ticket.post') }}" method="post" id="buyTicket">
         @csrf
-        <input type="hidden" name="type" value="{{ \App\Enums\AttendeeType::ATTENDEE }}">
+        <input type="hidden" name="type" value="{{ $attendeeType }}">
         <div class="Field {{ $errors->has('name') ? ' Field--error' : '' }}">
           <label class="Field__label">Name</label>
           <div class="Field__control">

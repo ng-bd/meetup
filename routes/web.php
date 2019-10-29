@@ -14,6 +14,10 @@
 Route::view('/', 'angularbd.app')->name('angularbd.index');
 
 Route::get('get/ticket', 'TicketController@index')->name('buy.ticket');
+Route::get('register/sponsor', 'TicketController@showOtherRegistration')->name('register.sponsor');
+Route::get('register/guest', 'TicketController@showOtherRegistration')->name('register.guest');
+Route::get('register/volunteer', 'TicketController@showOtherRegistration')->name('register.volunteer');
+
 Route::post('get/ticket', 'TicketController@storeAttendee')->name('buy.ticket.post');
 
 Route::get('attendee/{uuid}/verify', 'TicketController@verifyAttendee')->name('attendee.verify');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AttendeeRequest;
 use App\Models\Attendee;
 use App\Models\Payment;
+use App\Enums\AttendeeType;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -41,12 +42,38 @@ class TicketController extends Controller
         if ($this->closeRegistration()) {
             return $this->redirectToIndex('Registration Closed', 'error');
         }
+        $attendeeType = AttendeeType::ATTENDEE;
+        return view('angularbd.buy-ticket', compact('attendeeType'));
+    }
+    
+    public function showOtherRegistration(Request $request)
+    {      
+        $route = $request->route()->getName();
+        $attendeeType = AttendeeType::GUEST;
 
-        return view('angularbd.buy-ticket');
+        if($route == 'register.sponsor') {
+            $attendeeType = AttendeeType::SPONSOR;
+        } elseif($route == 'register.volunteer') {
+            $attendeeType = AttendeeType::VOLUNTEER;
+        }
+        
+        return view('angularbd.buy-ticket', compact('attendeeType'));
     }
 
     public function storeAttendee(AttendeeRequest $request)
     {
+        $attendeeType = $request->get('type');
+        if ($attendeeType != AttendeeType::ATTENDEE) {
+            $attendee = Attendee::create($request->all());
+            if (!blank($attendee)) {
+                Log::info("Attendee type " . AttendeeType::ATTENDEE . " created successfully!");
+                return $this->redirectToIndex(env('SUCCESSFUL_REGISTRATION_MESSAGE'), 'success');
+            } else {
+                Log::info("Attendee type " . AttendeeType::ATTENDEE . " creation failed!");
+                return $this->redirectToIndex("Something Went Wrong !!", 'error');
+            }
+        }
+
         if ($this->closeRegistration()) {
             return $this->redirectToIndex('Registration Closed', 'error');
         }
@@ -63,6 +90,7 @@ class TicketController extends Controller
         //        dispatch(new SendSmsJob($attendee, env('CONFIRM_MESSAGE')));
 
         if (!blank($attendee)) {
+            Log::info("Attendee created successfully!");
             toast(env('EVENT_SUCCESSFUL_REGISTRATION_MESSAGE'), 'success');
 
             return redirect()->route('ticket.payment', $attendee->id);
