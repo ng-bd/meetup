@@ -5,12 +5,13 @@ namespace App\Models;
 use App\Jobs\SendEmailJob;
 use App\Jobs\SendSmsJob;
 use App\Mail\PaymentSuccess;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Shipu\Watchable\Traits\WatchableTrait;
 
 class Payment extends Model
 {
-    use WatchableTrait;
+    use WatchableTrait, CrudTrait;
 
     protected $fillable = [
         'attendee_id',

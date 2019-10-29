@@ -2,3 +2,4 @@
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('dashboard') }}"><i class="fa fa-dashboard nav-icon"></i> {{ trans('backpack::base.dashboard') }}</a></li>
 <li class="nav-title">Administration</li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('attendee') }}'><i class='nav-icon fa fa-question'></i> Attendees</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('payment') }}'><i class='nav-icon fa fa-question'></i> Payments</a></li>

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\AttendeeRequest;
+use App\Jobs\SendEmailJob;
+use App\Mail\ThanksForJoining;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Support\Facades\Route;
 
 /**
  * Class AttendeeCrudController
@@ -216,4 +218,60 @@ class AttendeeCrudController extends CrudController
     {
         $this->setupListOperation();
     }
+
+    /**
+     * Define which routes are needed for this operation.
+     *
+     * @param string $segment    Name of the current entity (singular). Used as first URL segment.
+     * @param string $routeName  Prefix of the route name.
+     * @param string $controller Name of the current CrudController.
+     */
+    protected function setupBulkTicketRoutes($segment, $routeName, $controller)
+    {
+        Route::post($segment.'/bulk-ticket', [
+            'as'        => $routeName.'.bulkTicket',
+            'uses'      => $controller.'@bulkTicket',
+            'operation' => 'bulkTicket',
+        ]);
+    }
+
+    /**
+     * Add the default settings, buttons, etc that this operation needs.
+     */
+    protected function setupBulkDeleteDefaults()
+    {
+        $this->crud->allowAccess('bulkTicket');
+
+        $this->crud->operation('bulkTicket', function () {
+            $this->crud->loadDefaultOperationSettingsFromConfig();
+        });
+
+        $this->crud->operation('list', function () {
+            $this->crud->enableBulkActions();
+            $this->crud->addButton('bottom', 'bulk_ticket', 'view', 'crud::buttons.bulk_ticket');
+        });
+    }
+
+    /**
+     * Delete multiple entries in one go.
+     *
+     * @return string
+     */
+    public function bulkTicket()
+    {
+        $this->crud->applyConfigurationFromSettings('bulkTicket');
+        $this->crud->hasAccessOrFail('bulkTicket');
+
+        $entries = $this->request->input('entries');
+        $sendTickets = [];
+
+        foreach ($entries as $key => $id) {
+            if ($entry = $this->crud->model->find($id)) {
+                $sendTickets[] = dispatch(new SendEmailJob($entry, new ThanksForJoining($entry)));
+            }
+        }
+
+        return $sendTickets;
+    }
+
 }

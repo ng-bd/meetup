@@ -22,6 +22,7 @@ Route::post('get/ticket', 'TicketController@storeAttendee')->name('buy.ticket.po
 
 Route::get('attendee/{uuid}/verify', 'TicketController@verifyAttendee')->name('attendee.verify');
 Route::get('attendee/{uuid}/attend', 'TicketController@approveAttendance')->name('attendee.attend');
+Route::get('attendee/search', 'TicketController@searchAttendee')->name('attendee.search');
 
 Route::get('ticket/payment/{attendee}', 'TicketController@ticketPayment')->name('ticket.payment');
 
@@ -29,3 +30,7 @@ Route::post('payment/success', 'TicketController@paymentSuccessOrFailed')->name(
 Route::post('payment/failed', 'TicketController@paymentSuccessOrFailed')->name('payment.failed');
 Route::post('payment/cancel', 'TicketController@paymentSuccessOrFailed')->name('payment.cancel');
 
+
+Route::get('qrcode/{attendee}', function (\App\Models\Attendee $attendee) {
+    return view('emails.payment.qr_code', compact('attendee'));
+});
