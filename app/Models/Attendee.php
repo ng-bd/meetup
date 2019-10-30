@@ -71,7 +71,7 @@ class Attendee extends Model
     {
         dispatch(new SendEmailJob($this, new SuccessfullyCreateAttendee($this)));
         if(env('SMS_ENABLED')) {
-            dispatch(new SendSmsJob($this, env('CONFIRM_MESSAGE')));
+            dispatch(new SendSmsJob($this, ($this->type==\App\Enums\AttendeeType::ATTENDEE?env('CONFIRM_MESSAGE'):env('GUEST_MESSAGE'))));
         }
     }
 }
