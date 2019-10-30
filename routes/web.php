@@ -24,6 +24,8 @@ Route::get('attendee/{uuid}/verify', 'TicketController@verifyAttendee')->name('a
 Route::get('attendee/{uuid}/attend', 'TicketController@approveAttendance')->name('attendee.attend');
 Route::get('attendee/search', 'TicketController@searchAttendee')->name('attendee.search');
 
+Route::get('attendee/{email}', 'TicketController@getAttendeeByEmail')->name('attendee.search.email');
+
 Route::get('ticket/payment/{attendee}', 'TicketController@ticketPayment')->name('ticket.payment');
 
 Route::post('payment/success', 'TicketController@paymentSuccessOrFailed')->name('payment.success');

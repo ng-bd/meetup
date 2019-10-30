@@ -240,4 +240,14 @@ class TicketController extends Controller
             'data' => $attendee->toArray()
         ]);
     }
+
+    public function getAttendeeByEmail($email)
+    {
+        $attendee = Attendee::where('email', $email)->first();
+            
+        if (blank($attendee)) {
+            return $this->redirectToIndex("Attendee is not available!", 'error');
+        }    
+        return view('angularbd.ticket-payment', compact('attendee'));
+    }
 }
