@@ -140,7 +140,7 @@ class AttendeeCrudController extends CrudController
         ],
         trans('attendee_type'),
         function($value) {
-            $this->crud->addClause('where', 'is_paid', '=', $value);
+            $this->crud->addClause('where', 'type', '=', $value);
         });
     }
 
