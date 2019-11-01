@@ -13,4 +13,8 @@
     <div class="Meetup__sponsorsWrapper">
         <a class="Meetup__sponsor" href="https://aamarpay.com/" target="_blank"><img src="{{ asset('angularbd/images/sponsor-8@2x.png') }}" alt="sponsor"></a>
     </div>
+    <h4 class="Meetup__sectionTitle">Gift Sponsor</h4>
+    <div class="Meetup__sponsorsWrapper">
+        <a class="Meetup__sponsor" href="https://themefisher.com/" target="_blank"><img src="{{ asset('angularbd/images/sponsor-9@2x.png') }}" alt="sponsor"></a>
+    </div>
 </div>
