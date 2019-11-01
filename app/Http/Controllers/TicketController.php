@@ -221,14 +221,22 @@ class TicketController extends Controller
 
         $attendee = Attendee::
             where(function ($query) use ($search) {
-                                $query->where('email', $search)
-                                ->orWhere('mobile', $search);
+                $query->where('email', $search)
+                    ->orWhere('mobile', $search);
             })
-            ->orWhere(function ($query) use ($search) {
-                $query->where('is_paid', 1)
-                    ->where('type', AttendeeType::ATTENDEE);
+            ->where(function ($query) {
+                $query->where(function ($query) {
+                    $query->whereIn('type', [
+                        AttendeeType::VOLUNTEER,
+                        AttendeeType::SPONSOR,
+                        AttendeeType::GUEST
+                    ]);
+                });
+                $query->orWhere(function ($query) {
+                    $query->where('is_paid', 1)
+                        ->where('type', AttendeeType::ATTENDEE);
+                });
             })
-            ->orWhereIn('type', [AttendeeType::GUEST, AttendeeType::SPONSOR, AttendeeType::VOLUNTEER])
             ->first(['uuid', 'name', 'email', 'mobile', 'is_paid', 'attend_at']);
 
         if (!$attendee) {
