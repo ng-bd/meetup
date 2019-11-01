@@ -249,7 +249,7 @@ class TicketController extends Controller
                         ->where('type', AttendeeType::ATTENDEE);
                 });
             })
-            ->first(['uuid', 'name', 'email', 'mobile', 'is_paid', 'attend_at']);
+            ->first(['uuid', 'name', 'type', 'email', 'mobile', 'is_paid', 'attend_at']);
 
         if (!$attendee) {
             return response()->json([
