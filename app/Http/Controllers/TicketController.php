@@ -193,7 +193,19 @@ class TicketController extends Controller
     public function approveAttendance($uuid)
     {
         $attendee = Attendee::where('uuid', $uuid)
-            ->where('is_paid', 1)
+            ->where(function ($query) {
+                $query->where(function ($query) {
+                    $query->whereIn('type', [
+                        AttendeeType::VOLUNTEER,
+                        AttendeeType::SPONSOR,
+                        AttendeeType::GUEST
+                    ]);
+                });
+                $query->orWhere(function ($query) {
+                    $query->where('is_paid', 1)
+                        ->where('type', AttendeeType::ATTENDEE);
+                });
+            })
             ->whereNull('attend_at')
             ->first();
 
