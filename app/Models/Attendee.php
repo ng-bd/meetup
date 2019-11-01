@@ -38,10 +38,6 @@ class Attendee extends Model
         'attend_at' => 'datetime'
     ];
 
-    protected $appends = [
-        'tshirt'
-    ];
-
     public function payment()
     {
         return $this->hasOne(Payment::class);

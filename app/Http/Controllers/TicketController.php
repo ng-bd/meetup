@@ -229,7 +229,8 @@ class TicketController extends Controller
 
     public function searchAttendee()
     {
-        $search = request()->get('q', '');
+        $search = request()->get('tq', '');
+        $search = request()->get('q', $search);
 
         $attendee = Attendee::
             where(function ($query) use ($search) {
@@ -249,12 +250,18 @@ class TicketController extends Controller
                         ->where('type', AttendeeType::ATTENDEE);
                 });
             })
-            ->first(['uuid', 'name', 'type', 'email', 'mobile', 'is_paid', 'attend_at']);
+            ->first(['uuid', 'name', 'type', 'email', 'mobile', 'is_paid', 'attend_at', 'misc']);
 
         if (!$attendee) {
             return response()->json([
                 'status' => Response::HTTP_NOT_FOUND,
             ], Response::HTTP_NOT_FOUND);
+        }
+
+        if(request()->has('tq')) {
+            return response()->json([
+                't-shirt' => $attendee->tshirt
+            ]);
         }
 
         if ($attendee->attend_at) {
