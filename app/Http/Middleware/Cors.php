@@ -16,7 +16,7 @@ class Cors
     public function handle($request, Closure $next)
     {
         $httpOrigin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : false;
-        $allowedOrigins = ['event-qr-code-scanning.herokuapp.com'];
+        $allowedOrigins = ['event-qr-code-scanning.herokuapp.com', 'https://event-qr-code-scanning.herokuapp.com', 'http://event-qr-code-scanning.herokuapp.com'];
         if(in_array($httpOrigin, $allowedOrigins)) {
             return $next($request)->header('Access-Control-Allow-Origin' , '*')
                 ->header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE')
