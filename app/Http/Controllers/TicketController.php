@@ -45,9 +45,9 @@ class TicketController extends Controller
         $attendeeType = AttendeeType::ATTENDEE;
         return view('angularbd.buy-ticket', compact('attendeeType'));
     }
-    
+
     public function showOtherRegistration(Request $request)
-    {      
+    {
         $route = $request->route()->getName();
         $attendeeType = AttendeeType::GUEST;
 
@@ -56,7 +56,7 @@ class TicketController extends Controller
         } elseif($route == 'register.volunteer') {
             $attendeeType = AttendeeType::VOLUNTEER;
         }
-        
+
         return view('angularbd.buy-ticket', compact('attendeeType'));
     }
 
@@ -219,20 +219,30 @@ class TicketController extends Controller
     {
         $search = request()->get('q', '');
 
-        $attendee = Attendee::where('is_paid', 1)
-            ->where(function ($query) use ($search) {
-                $query->where('email', $search)
-                    ->orWhere('mobile', $search);
+        $attendee = Attendee::
+            where(function ($query) use ($search) {
+                                $query->where('email', $search)
+                                ->orWhere('mobile', $search);
             })
+            ->orWhere(function ($query) use ($search) {
+                $query->where('is_paid', 1)
+                    ->where('type', AttendeeType::ATTENDEE);
+            })
+            ->orWhereIn('type', [AttendeeType::GUEST, AttendeeType::SPONSOR, AttendeeType::VOLUNTEER])
             ->first(['uuid', 'name', 'email', 'mobile', 'is_paid', 'attend_at']);
 
-        if (!$attendee) return response()->json([
-            'status' => Response::HTTP_NOT_FOUND
-        ], Response::HTTP_NOT_FOUND);
+        if (!$attendee) {
+            return response()->json([
+                'status' => Response::HTTP_NOT_FOUND,
+            ], Response::HTTP_NOT_FOUND);
+        }
 
-        if ($attendee->attend_at) return response()->json([
-            'status' => Response::HTTP_UNAUTHORIZED
-        ], Response::HTTP_UNAUTHORIZED);
+        if ($attendee->attend_at) {
+            return response()->json([
+                'status' => Response::HTTP_UNAUTHORIZED,
+                'data' => $attendee->toArray()
+            ], Response::HTTP_UNAUTHORIZED);
+        }
 
         return response()->json([
             'status'    => Response::HTTP_OK,
@@ -244,10 +254,10 @@ class TicketController extends Controller
     public function getAttendeeByEmail($email)
     {
         $attendee = Attendee::where('email', $email)->first();
-            
+
         if (blank($attendee)) {
             return $this->redirectToIndex("Attendee is not available!", 'error');
-        }    
+        }
         return view('angularbd.ticket-payment', compact('attendee'));
     }
 }
