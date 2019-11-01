@@ -233,12 +233,8 @@ class TicketController extends Controller
 
         $attendee = Attendee::
             where(function ($query) use ($search) {
-                $query->where(function ($query) use($search) {
-                    $query->where('email', $search);
-                    $query->orWhere('email', '88'.$search);
-                    $query->orWhere('email', '+88'.$search);
-                })
-                ->orWhere('mobile', $search);
+                $query->where('email', $search)
+                    ->orWhereIn('mobile', [$search, '88'.$search, '+88'.$search]);
             })
             ->where(function ($query) {
                 $query->where(function ($query) {
